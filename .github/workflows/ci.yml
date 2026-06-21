@@ -2,44 +2,44 @@ name: CI - Testes Automatizados
 
 on:
   push:
-    branches: [main, master]
+    branches:
+      - main
+      - master
 
   workflow_dispatch:
 
   schedule:
-    - cron: '15 22 * * *' # 23:15 Lisboa (UTC ajustado)
+    - cron: '22 23 * * *'
 
 jobs:
-  tests:
+  testes:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout do código
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # =========================
-      # SISTEMA LOGIN
-      # =========================
-      - name: Install dependencies (login)
-        working-directory: 03-automacao-testes/sistema-login
+      # Sistema Login
+
+      - name: Instalar dependências - Login
+        working-directory: 03-programacao-para-automacao/sistema-login
         run: npm install
 
-      - name: Run tests (login)
-        working-directory: 03-automacao-testes/sistema-login
+      - name: Executar testes - Login
+        working-directory: 03-programacao-para-automacao/sistema-login
         run: npm test
 
-      # =========================
-      # SISTEMA PAGAMENTOS
-      # =========================
-      - name: Install dependencies (pagamentos)
-        working-directory: 03-automacao-testes/sistema-pagamentos
+      # Sistema Pagamentos
+
+      - name: Instalar dependências - Pagamentos
+        working-directory: 03-programacao-para-automacao/sistema-pagamentos
         run: npm install
 
-      - name: Run tests (pagamentos)
-        working-directory: 03-automacao-testes/sistema-pagamentos
+      - name: Executar testes - Pagamentos
+        working-directory: 03-programacao-para-automacao/sistema-pagamentos
         run: npm test
