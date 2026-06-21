@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: '22 23 * * *'
+    - cron: '45 00 * * *'
 
 jobs:
   testes:
@@ -22,7 +22,7 @@ jobs:
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       # Sistema Login
 
@@ -43,3 +43,12 @@ jobs:
       - name: Executar testes - Pagamentos
         working-directory: 03-programacao-para-automacao/sistema-pagamentos
         run: npm test
+    
+      - name: Upload relatório
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-testes
+          path: |
+            03-programacao-para-automacao/sistema-login/reports
+            03-programacao-para-automacao/sistema-pagamentos/reports
