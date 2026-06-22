@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: '35 00 * * *'
+    - cron: '50 00 * * *'
 
 jobs:
   testes:
