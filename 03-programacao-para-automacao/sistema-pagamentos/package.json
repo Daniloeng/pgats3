@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=reports/results.xml",
-  "test:html": "mocha test --reporter mochawesome"
+    "test:html": "mocha test --reporter mochawesome"
   },
   "keywords": [],
   "author": "",

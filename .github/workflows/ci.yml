@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: '15 00 * * *'
+    - cron: '30 00 * * *'
 
 jobs:
   testes:
@@ -22,50 +22,57 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-            node-version: 22
+          node-version: 22
 
-      # Sistema Login
+      # =========================
+      # SISTEMA LOGIN
+      # =========================
 
       - name: Instalar dependências - Login
         working-directory: 03-programacao-para-automacao/sistema-login
         run: npm install
 
-      - name: Executar testes - Login
+      - name: Instalar dependências de reports - Login
         working-directory: 03-programacao-para-automacao/sistema-login
-        run: npm test
+        run: npm install --save-dev mocha-junit-reporter mochawesome
 
-      # Sistema Pagamentos
+      - name: Executar testes XML - Login
+        working-directory: 03-programacao-para-automacao/sistema-login
+        run: npm run test:xml
+
+      - name: Executar testes HTML - Login
+        working-directory: 03-programacao-para-automacao/sistema-login
+        run: npm run test:html
+
+      # =========================
+      # SISTEMA PAGAMENTOS
+      # =========================
 
       - name: Instalar dependências - Pagamentos
         working-directory: 03-programacao-para-automacao/sistema-pagamentos
         run: npm install
 
-      - name: Executar testes - Pagamentos
+      - name: Instalar dependências de reports - Pagamentos
         working-directory: 03-programacao-para-automacao/sistema-pagamentos
-        run: npm test
-    
-      - name: Upload relatório
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: relatorio-testes
-          path: |
-            03-programacao-para-automacao/sistema-login/reports
-            03-programacao-para-automacao/sistema-pagamentos/reports
-        
-      - name: Gerar relatório HTML - Login
-        working-directory: 03-programacao-para-automacao/sistema-login
-        run: npm run test:html
+        run: npm install --save-dev mocha-junit-reporter mochawesome
 
-      - name: Gerar relatório HTML - Pagamentos
+      - name: Executar testes XML - Pagamentos
+        working-directory: 03-programacao-para-automacao/sistema-pagamentos
+        run: npm run test:xml
+
+      - name: Executar testes HTML - Pagamentos
         working-directory: 03-programacao-para-automacao/sistema-pagamentos
         run: npm run test:html
 
-      - name: Upload relatório
+      # =========================
+      # UPLOAD DE RELATÓRIOS
+      # =========================
+
+      - name: Upload relatório de testes
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: relatorio-testes
+          name: relatorio-testes-${{ github.run_number }}
           path: |
             03-programacao-para-automacao/sistema-login/reports
             03-programacao-para-automacao/sistema-login/mochawesome-report
