@@ -42,7 +42,7 @@ jobs:
 
       - name: Testes HTML - Login
         working-directory: 03-programacao-para-automacao/sistema-login
-        run: npx mocha test --reporter mochawesome
+        run: npx mocha test --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=report,quiet=true
 
       # =========================
       # SISTEMA PAGAMENTOS
@@ -62,7 +62,7 @@ jobs:
 
       - name: Testes HTML - Pagamentos
         working-directory: 03-programacao-para-automacao/sistema-pagamentos
-        run: npx mocha test --reporter mochawesome
+        run: npx mocha test --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=report,quiet=true
 
       # =========================
       # UPLOAD DE RELATÓRIOS
