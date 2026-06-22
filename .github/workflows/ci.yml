@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: '30 00 * * *'
+    - cron: '35 00 * * *'
 
 jobs:
   testes:
@@ -30,19 +30,19 @@ jobs:
 
       - name: Instalar dependências - Login
         working-directory: 03-programacao-para-automacao/sistema-login
-        run: npm install
+        run: npm ci
 
-      - name: Instalar dependências de reports - Login
+      - name: Garantir pasta reports - Login
         working-directory: 03-programacao-para-automacao/sistema-login
-        run: npm install --save-dev mocha-junit-reporter mochawesome
+        run: mkdir -p reports
 
-      - name: Executar testes XML - Login
+      - name: Testes XML - Login
         working-directory: 03-programacao-para-automacao/sistema-login
-        run: npm run test:xml
+        run: npx mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=reports/results.xml
 
-      - name: Executar testes HTML - Login
+      - name: Testes HTML - Login
         working-directory: 03-programacao-para-automacao/sistema-login
-        run: npm run test:html
+        run: npx mocha test --reporter mochawesome
 
       # =========================
       # SISTEMA PAGAMENTOS
@@ -50,19 +50,19 @@ jobs:
 
       - name: Instalar dependências - Pagamentos
         working-directory: 03-programacao-para-automacao/sistema-pagamentos
-        run: npm install
+        run: npm ci
 
-      - name: Instalar dependências de reports - Pagamentos
+      - name: Garantir pasta reports - Pagamentos
         working-directory: 03-programacao-para-automacao/sistema-pagamentos
-        run: npm install --save-dev mocha-junit-reporter mochawesome
+        run: mkdir -p reports
 
-      - name: Executar testes XML - Pagamentos
+      - name: Testes XML - Pagamentos
         working-directory: 03-programacao-para-automacao/sistema-pagamentos
-        run: npm run test:xml
+        run: npx mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=reports/results.xml
 
-      - name: Executar testes HTML - Pagamentos
+      - name: Testes HTML - Pagamentos
         working-directory: 03-programacao-para-automacao/sistema-pagamentos
-        run: npm run test:html
+        run: npx mocha test --reporter mochawesome
 
       # =========================
       # UPLOAD DE RELATÓRIOS

@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=reports/results.xml",
-  "test:html": "mocha test --reporter mochawesome"
+    "test": "mocha test",
+    "test:xml": "mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=reports/results.xml",
+    "test:html": "mocha test --reporter mochawesome"
   },
   "keywords": [],
   "author": "",
