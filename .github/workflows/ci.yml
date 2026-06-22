@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: '00 00 * * *'
+    - cron: '15 00 * * *'
 
 jobs:
   testes:
@@ -19,10 +19,10 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v4
 
-      - name: Configurar Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+            node-version: 22
 
       # Sistema Login
 
@@ -52,3 +52,22 @@ jobs:
           path: |
             03-programacao-para-automacao/sistema-login/reports
             03-programacao-para-automacao/sistema-pagamentos/reports
+        
+      - name: Gerar relatório HTML - Login
+        working-directory: 03-programacao-para-automacao/sistema-login
+        run: npm run test:html
+
+      - name: Gerar relatório HTML - Pagamentos
+        working-directory: 03-programacao-para-automacao/sistema-pagamentos
+        run: npm run test:html
+
+      - name: Upload relatório
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-testes
+          path: |
+            03-programacao-para-automacao/sistema-login/reports
+            03-programacao-para-automacao/sistema-login/mochawesome-report
+            03-programacao-para-automacao/sistema-pagamentos/reports
+            03-programacao-para-automacao/sistema-pagamentos/mochawesome-report
