@@ -11,7 +11,13 @@ import { toApiPayload } from '../factories/userFactory'
  * Todas as funções retornam uma chain Cypress que produz { status, headers, duration, body }
  * já com o body convertido para objeto.
  */
-const apiUrl = () => Cypress.env('apiUrl')
+const apiUrl = () => {
+  const url = Cypress.expose('apiUrl')
+  if (!url) {
+    throw new Error('apiUrl não definida: configure "expose.apiUrl" no cypress.config.js')
+  }
+  return url
+}
 
 const normalize = (response) => ({
   status: response.status,

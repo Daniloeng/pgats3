@@ -35,7 +35,8 @@ module.exports = defineConfig({
     saveAllAttempts: false,
     overwrite: true,
   },
-  env: {
+  // Cypress 16: variáveis públicas ficam em "expose" (lidas com Cypress.expose); "env" é para segredos (cy.env).
+  expose: {
     apiUrl: 'https://automationexercise.com/api',
   },
   e2e: {

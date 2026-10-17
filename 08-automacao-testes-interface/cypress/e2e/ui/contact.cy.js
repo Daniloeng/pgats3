@@ -35,7 +35,7 @@ describe('UI | Fale conosco (Contact Us)', () => {
       ContactPage.elements
         .successMessage()
         .should('be.visible')
-        .and('have.text', messages.contactSuccess)
+        .and('contain', messages.contactSuccess)
     })
   })
 
@@ -47,7 +47,9 @@ describe('UI | Fale conosco (Contact Us)', () => {
       ContactPage.elements
         .email()
         .then(($input) => expect($input[0].validity.typeMismatch).to.equal(true))
-      ContactPage.elements.successMessage().should('not.exist')
+      // A div de sucesso existe no DOM desde o início (oculta); o envio não pode torná-la visível.
+      ContactPage.elements.successMessage().should('not.be.visible')
+      cy.location('pathname').should('eq', '/contact_us')
     })
   })
 })

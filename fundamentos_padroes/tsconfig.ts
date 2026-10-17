@@ -1,0 +1,7 @@
+export default {
+  compilerOptions: {
+    module: "commonjs",
+    target: "ES2020",
+    esModuleInterop: true
+  }
+};

@@ -172,7 +172,7 @@ Principais opções em `cypress.config.js`:
 Sobrescrever variáveis sem alterar o código:
 
 ```bash
-npx cypress run --config baseUrl=https://outro-ambiente.com --env apiUrl=https://outro-ambiente.com/api
+npx cypress run --config baseUrl=https://www.automationexercise.com/ --env apiUrl=https://www.automationexercise.com/api_list
 ```
 
 Ou via variáveis de ambiente (`CYPRESS_baseUrl`, `CYPRESS_apiUrl`) ou um arquivo local `cypress.env.json` (ignorado pelo Git).

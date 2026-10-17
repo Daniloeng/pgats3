@@ -78,3 +78,54 @@ jobs:
             03-programacao-para-automacao/sistema-login/mochawesome-report
             03-programacao-para-automacao/sistema-pagamentos/reports
             03-programacao-para-automacao/sistema-pagamentos/mochawesome-report
+
+  # =========================
+  # AUTOMATION EXERCISE - CYPRESS (UI + API)
+  # =========================
+  testes-cypress:
+    name: Cypress - Automation Exercise (UI + API)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    defaults:
+      run:
+        working-directory: 08-automacao-testes-interface
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Instala as dependências (com cache do npm e do binário do Cypress)
+      # e executa "npm test" (todos os testes UI + API + relatório Mochawesome)
+      - name: Testes Cypress - Automation Exercise
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: 08-automacao-testes-interface
+          command: npm test -- --browser chrome
+
+      - name: Lint - Automation Exercise
+        if: always()
+        run: npm run lint
+
+      - name: Upload relatório Cypress
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-cypress-${{ github.run_number }}
+          path: 08-automacao-testes-interface/cypress/reports
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Upload screenshots Cypress
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-cypress-${{ github.run_number }}
+          path: 08-automacao-testes-interface/cypress/screenshots
+          if-no-files-found: ignore
+          retention-days: 7

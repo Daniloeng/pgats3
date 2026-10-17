@@ -1,5 +1,5 @@
 /**
- * Página /contact_us
+ * PÃ¡gina /contact_us
  */
 export const ContactPage = {
   elements: {
