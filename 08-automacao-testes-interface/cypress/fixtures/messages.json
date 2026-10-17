@@ -1,0 +1,13 @@
+{
+  "loginInvalid": "Your email or password is incorrect!",
+  "emailAlreadyExists": "Email Address already exist!",
+  "accountCreated": "Account Created!",
+  "accountDeleted": "Account Deleted!",
+  "contactSuccess": "Success! Your details have been submitted successfully.",
+  "subscriptionSuccess": "You have been successfully subscribed!",
+  "productAdded": "Your product has been added to cart.",
+  "emptyCart": "Cart is empty!",
+  "checkoutLoginRequired": "Register / Login account to proceed on checkout.",
+  "orderPlaced": "Order Placed!",
+  "orderConfirmed": "Congratulations! Your order has been confirmed!"
+}

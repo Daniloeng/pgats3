@@ -1,0 +1,18 @@
+{
+  "blueTop": {
+    "id": 1,
+    "name": "Blue Top",
+    "price": "Rs. 500",
+    "category": "Women > Tops",
+    "brand": "Polo"
+  },
+  "menTshirt": {
+    "id": 2,
+    "name": "Men Tshirt",
+    "price": "Rs. 400",
+    "category": "Men > Tshirts",
+    "brand": "H&M"
+  },
+  "searchTerm": "Top",
+  "nonExistentSearchTerm": "produto-inexistente-xyz"
+}

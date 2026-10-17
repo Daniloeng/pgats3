@@ -1,0 +1,37 @@
+{
+  "name": "automationexercise-cypress",
+  "version": "1.0.0",
+  "description": "Automação de testes E2E (UI) e API do site Automation Exercise com Cypress",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "cy:open": "cypress open",
+    "test": "cypress run",
+    "test:ui": "cypress run --spec \"cypress/e2e/ui/**/*.cy.js\"",
+    "test:api": "cypress run --spec \"cypress/e2e/api/**/*.cy.js\"",
+    "test:chrome": "cypress run --browser chrome",
+    "test:headed": "cypress run --headed",
+    "report:clean": "rimraf cypress/reports cypress/screenshots cypress/videos",
+    "pretest": "npm run report:clean",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@faker-js/faker": "^10.6.0",
+    "ajv": "^8.20.0",
+    "cypress": "^16.2.0",
+    "cypress-mochawesome-reporter": "^5.0.0",
+    "eslint": "^10.13.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-cypress": "^7.0.2",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10",
+    "rimraf": "^6.1.3"
+  }
+}
